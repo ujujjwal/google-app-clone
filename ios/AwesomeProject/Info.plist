@@ -20,6 +20,12 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+
+	<!-- ✅ Moved this below CFBundleVersion for correct structure -->
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -33,10 +39,20 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
+
+	<!-- ✅ Corrected permissions (camera, microphone, etc.) -->
+	<key>NSCameraUsageDescription</key>
+	<string>We need access to your camera to take pictures for search</string>
+
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need access to your gallery to upload images for search</string>
+
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>We need permission to save images after editing</string>
+
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to microphone for voice search</string>
+
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
@@ -44,13 +60,16 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>We need access to your location for location-based searches</string>
+
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
 		<string>remote-notification</string>
 	</array>
+	
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
