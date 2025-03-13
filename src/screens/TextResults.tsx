@@ -37,7 +37,9 @@ const TextResults = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 10 },
-  link: { color: "blue", textDecorationLine: "underline", marginVertical: 5 },
+	link: { color: "blue", textDecorationLine: "underline", marginVertical: 5 },
+    noResults:{fontSize: 20, textAlign: 'center', marginTop: 20}
+
 });
 
 export default TextResults;
