@@ -1,17 +1,25 @@
 import "./src/config/firebaseConfig"; // ✅ Ensure Firebase is initialized
 import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import ImageSearchScreen from "./src/screens/ImageSearchScreen";
+import TextResults from "./src/screens/TextResults";
+const Tab = createBottomTabNavigator();
 import SignInScreen from './src/screens/SignInScreen'; 
-
-const Stack = createStackNavigator();
-
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="SignInScreen">
-        <Stack.Screen name="SignInScreen" component={SignInScreen} />
-      </Stack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="Images">
+          {() => <ImageSearchScreen  />}
+        </Tab.Screen>
+        <Tab.Screen name="Text">
+          {() => <TextResults  />}
+        </Tab.Screen>
+          <Tab.Screen name="Sign IN">
+          {() => <SignInScreen  />}
+        </Tab.Screen>
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
