@@ -1,5 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, Text, StyleSheet, Alert } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import ImagePicker from "react-native-image-crop-picker";
 
 const ImagePickerComponent = ({ onImageSelected }) => {
@@ -31,7 +31,8 @@ const ImagePickerComponent = ({ onImageSelected }) => {
   };
 
   return (
-    <View style={styles.container}>
+	  <View style={styles.container}>
+
       {/* Capture from Camera */}
       <TouchableOpacity style={styles.button} onPress={captureFromCamera}>
         <Text style={styles.buttonText}>📸 Capture Image</Text>

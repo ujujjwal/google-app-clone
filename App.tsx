@@ -4,12 +4,18 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import ImageSearchScreen from "./src/screens/ImageSearchScreen";
 import TextResults from "./src/screens/TextResults";
+import Home from "./src/screens/Home";
 const Tab = createBottomTabNavigator();
 import SignInScreen from './src/screens/SignInScreen'; 
 const App = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator>
+        <Tab.Screen name="Home"
+          options={{headerShown: false}}
+        >
+          {() => < Home  />}
+        </Tab.Screen>
         <Tab.Screen name="Images">
           {() => <ImageSearchScreen  />}
         </Tab.Screen>

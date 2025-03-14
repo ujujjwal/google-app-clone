@@ -5,12 +5,14 @@ import {
   FlatList,
   Text,
   TouchableOpacity,
-  StyleSheet,
+	StyleSheet,
+  Image
 } from "react-native";
 import { fetchGoogleSuggestions } from "../utils/api";
+import ImagePicker from "react-native-image-crop-picker";
 
 
-const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
+const SearchBar = ({ onSearch,onImageSelected }: { onSearch: (query: string) => void, }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
@@ -24,6 +26,19 @@ const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
       setSuggestions([]);
     }
   };
+	
+    const pickFromGallery = async () => {
+    try {
+      const image = await ImagePicker.openPicker({
+        width: 300,
+        height: 300,
+        cropping: true, // ✂️ Enable Cropping
+      });
+      onImageSelected(image.path);
+    } catch (error) {
+      console.log("Gallery Error:", error);
+    }
+  };
 
   // 🔥 Handle Suggestion Click
   const handleSuggestionPress = (suggestion: string) => {
@@ -34,12 +49,38 @@ const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput
-        style={styles.input}
-        placeholder="Search..."
-        value={query}
-        onChangeText={handleSearchChange}
-      />
+      <View style={styles.searchBar}>
+        {/* 🔍 Search Icon */}
+       				<Image
+					source={require('../assets/icons/search.png')}
+					style={{width: 20, height: 20,tintColor:"#414548",marginRight: 8}}
+					/>
+
+        {/* 🔤 Input Field */}
+        <TextInput
+          style={styles.input}
+          placeholder="Search..."
+          placeholderTextColor="#414548"
+          value={query}
+          onChangeText={handleSearchChange}
+        />
+
+        {/* 🎤 Voice Search Icon */}
+        <TouchableOpacity onPress={() => console.log("Voice Search Triggered")} style={styles.iconButton}>
+         				<Image
+						source={require('../assets/icons/mic.png')}
+						style={{width: 20, height: 20,tintColor:"#fff"}}
+						/>
+        </TouchableOpacity>
+
+        {/* 📷 Image Search Icon */}
+        <TouchableOpacity onPress={pickFromGallery} style={styles.iconButton}>
+         				<Image
+						source={require('../assets/icons/camera.png')}
+						style={{width: 25, height: 25,resizeMode:"contain"}}
+						/>
+        </TouchableOpacity>
+      </View>
 
       {/* 🔥 Search Suggestions List */}
       {suggestions.length > 0 && (
@@ -52,7 +93,7 @@ const SearchBar = ({ onSearch }: { onSearch: (query: string) => void }) => {
               style={styles.suggestionItem}
               onPress={() => handleSuggestionPress(item)}
             >
-              <Text>{item}</Text>
+              <Text style={{ color: "#fff" }}>{item}</Text>
             </TouchableOpacity>
           )}
         />
@@ -66,17 +107,29 @@ export default SearchBar;
 // 🔥 Styling
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
+    marginHorizontal: 10,
+  },
+  searchBar: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#2f3133",
+    borderRadius: 40,
+    paddingHorizontal: 10,
+    height: 50,
+  },
+  icon: {
+    marginRight: 8,
   },
   input: {
-    height: 40,
-    borderWidth: 1,
-    borderColor: "#ccc",
-    paddingHorizontal: 10,
-    borderRadius: 5,
+    flex: 1,
+    fontSize: 16,
+    color: "#fff",
+  },
+  iconButton: {
+    padding: 8,
   },
   suggestionsContainer: {
-    backgroundColor: "#fff",
+    backgroundColor: "#333",
     marginTop: 5,
     borderRadius: 5,
     elevation: 2,
@@ -85,6 +138,6 @@ const styles = StyleSheet.create({
   suggestionItem: {
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#ddd",
+    borderBottomColor: "#444",
   },
 });
