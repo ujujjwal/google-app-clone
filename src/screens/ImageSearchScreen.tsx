@@ -102,11 +102,9 @@ const ImageSearchScreen = () => {
       </TouchableOpacity>
 
       {/* 🖼️ Image Results */}
-      {imageResults.length === 0 ? (
-        <Text style={styles.noResults}>No images found</Text>
-      ) : (
+
         <ImageGrid images={imageResults} />
-      )}
+      
 
       {/* 🌍 WebView for Google Lens Search */}
       {reverseSearchURL !== '' && (

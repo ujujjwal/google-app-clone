@@ -3,9 +3,9 @@ import auth from '@react-native-firebase/auth';
 
 GoogleSignin.configure({
   webClientId: '146581606434-f2tcq9jp98495i4jp5vu09go4jj4q8qt.apps.googleusercontent.com', // ✅ Web Client ID
-  iosClientId: '146581606434-hf6p8tid1jlnb40ehjj7fok50mbbpo30.apps.googleusercontent.com', // ✅ iOS Client ID (try adding this)
+  iosClientId: '146581606434-hf6p8tid1jlnb40ehjj7fok50mbbpo30.apps.googleusercontent.com', // ✅ iOS Client ID
   scopes: ['profile', 'email'],
-  offlineAccess: false,  // 🚀 Comment out if causing issues
+  offlineAccess: true,
 });
 
 export const signInWithGoogle = async () => {
