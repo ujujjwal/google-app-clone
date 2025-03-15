@@ -20,7 +20,7 @@ const auth = getAuth(app);
 GoogleSignin.configure({
   webClientId: '146581606434-f2tcq9jp98495i4jp5vu09go4jj4q8qt.apps.googleusercontent.com',
   scopes: ['profile', 'email'],
-  offlineAccess: false,
+  offlineAccess: true,
 });
 
 console.log("🔥 Web Client ID in use:", GoogleSignin.getTokens);
