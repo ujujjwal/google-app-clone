@@ -13,7 +13,10 @@ import {
 import ImageSearchScreen from './ImageSearchScreen';
 import WeatherLocationComponent from '../components/WeatherLocationComponent';
 import NewsComponent from '../components/NewsComponent';
+import GoogleAccountModal from '../components/GoogleAccountModal';
 const Home = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
+
   return (
     <ScrollView style={styles.scrollContainer}>
       <SafeAreaView style={{flex: 1, padding: 16}}>
@@ -27,10 +30,12 @@ const Home = () => {
             source={require('../assets/icons/labIcon.png')}
             style={styles.iconStyle}
           />
-          <Image
-            source={require('../assets/icons/labIcon.png')}
-            style={{width: 30, height: 30, alignSelf: 'flex-end'}}
-          />
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <Image
+              source={require('../assets/icons/labIcon.png')}
+              style={{width: 30, height: 30, alignSelf: 'flex-end'}}
+            />
+          </TouchableOpacity>
         </View>
 
         <View>
@@ -42,7 +47,9 @@ const Home = () => {
 
         <ImageSearchScreen />
         <WeatherLocationComponent />
-        <NewsComponent />
+			  <NewsComponent />
+			        <GoogleAccountModal visible={isModalVisible} onClose={() => setModalVisible(false)} />
+
       </SafeAreaView>
     </ScrollView>
   );
