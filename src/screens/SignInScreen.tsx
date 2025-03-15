@@ -8,7 +8,7 @@ const SignInScreen = (props) => {
       const user = await signInWithGoogle();
       console.log('🎉 Google Sign-In Success:', user);
       Alert.alert("Signed In!", `Welcome ${user.user.displayName}`);
-      props.navigation.navigate("ImageSearch");
+      // props.navigation.navigate("ImageSearch");
     } catch (error) {
       console.error('❌ Google Sign-In Failed:', error);
       Alert.alert("Error", "Google Sign-In Failed. Please try again.");

@@ -34,14 +34,10 @@ const ImagePickerComponent = ({ onImageSelected }) => {
 	  <View style={styles.container}>
 
       {/* Capture from Camera */}
-      <TouchableOpacity style={styles.button} onPress={captureFromCamera}>
+      {/* <TouchableOpacity style={styles.button} onPress={captureFromCamera}>
         <Text style={styles.buttonText}>📸 Capture Image</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
-      {/* Pick from Gallery */}
-      <TouchableOpacity style={styles.button} onPress={pickFromGallery}>
-        <Text style={styles.buttonText}>🖼️ Pick from Gallery</Text>
-      </TouchableOpacity>
     </View>
   );
 };
